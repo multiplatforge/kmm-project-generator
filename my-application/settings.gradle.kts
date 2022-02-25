@@ -7,5 +7,7 @@ pluginManagement {
 }
 
 rootProject.name = "my-application"
-include(":myapp-android-app")
-include(":MyAppShared")
+include(
+    ":myapp-android-app",
+    ":MyAppShared",
+)

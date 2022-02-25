@@ -1,11 +1,15 @@
-*.iml
-.gradle
-/local.properties
-.idea
+# macOS
 .DS_Store
-/build
-*/build
-/captures
-.externalNativeBuild
-.cxx
-local.properties
+
+# JetBrains IDEs
+**/.idea/*
+!**/.idea/dictionaries/
+*.iml
+
+# Android Studio
+/local.properties
+
+# Gradle
+.gradle/
+build/
+hs_err_pid*

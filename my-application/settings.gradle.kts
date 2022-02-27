@@ -9,5 +9,5 @@ pluginManagement {
 rootProject.name = "my-application"
 include(
     ":myapp-android-app",
-    ":MyAppShared",
+    ":myapp-shared",
 )

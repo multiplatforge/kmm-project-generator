@@ -1,4 +1,4 @@
-package orgpackages.myapplication
+package orgpackages.myapplication.shared
 
 import platform.UIKit.UIDevice
 

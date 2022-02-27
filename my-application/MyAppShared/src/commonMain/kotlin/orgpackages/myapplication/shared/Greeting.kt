@@ -1,4 +1,4 @@
-package orgpackages.myapplication
+package orgpackages.myapplication.shared
 
 class Greeting {
     fun greeting(): String {

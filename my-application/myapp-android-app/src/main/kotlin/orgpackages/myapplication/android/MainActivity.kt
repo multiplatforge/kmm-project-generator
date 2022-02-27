@@ -2,7 +2,7 @@ package orgpackages.myapplication.android
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import orgpackages.myapplication.Greeting
+import orgpackages.myapplication.shared.Greeting
 import android.widget.TextView
 
 fun greet(): String {

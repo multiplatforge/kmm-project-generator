@@ -17,6 +17,10 @@ allprojects {
     }
 }
 
+tasks.wrapper {
+    gradleVersion = "7.4"
+}
+
 tasks.register<Delete>("clean") {
     delete(rootProject.buildDir)
 }

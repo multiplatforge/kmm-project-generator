@@ -17,6 +17,6 @@ allprojects {
     }
 }
 
-tasks.register("clean", Delete::class) {
+tasks.register<Delete>("clean") {
     delete(rootProject.buildDir)
 }

@@ -1,5 +1,16 @@
 #!/usr/bin/env just --justfile
 
+patch +PATCHES:
+    #!/usr/bin/env sh
+    set -euo pipefail
+
+    patch_files=()
+    for patch in {{PATCHES}}; do
+        patch_files+=(patches/$patch.patch)
+    done
+    git apply --ignore-space-change --whitespace=fix ${patch_files[@]}
+
+
 generate APP_NAME='The Foo Bar' MODULE_PREFIX='foobar' ORG_NAME='Example, Inc.' ORG_IDENTIFIER='org.example':
     #!/usr/bin/env sh
     set -euo pipefail

@@ -1,6 +1,6 @@
 plugins {
-    kotlin("android") version "1.6.20-M1" apply false
-    id("com.android.application") version "7.3.0-alpha07" apply false
+    kotlin("android") apply false
+    id("com.android.application") apply false
 }
 
 tasks {

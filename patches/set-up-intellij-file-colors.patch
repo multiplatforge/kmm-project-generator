@@ -1,0 +1,78 @@
+Index: my-application/.gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/my-application/.gitignore b/my-application/.gitignore
+--- a/my-application/.gitignore	(revision 40a12a0427812598e73b7d8085a10106d01ce7c9)
++++ b/my-application/.gitignore	(date 1649362397457)
+@@ -4,6 +4,8 @@
+ # JetBrains IDEs
+ **/.idea/*
+ !**/.idea/dictionaries/
++!**/.idea/scopes/
++!**/.idea/fileColors.xml
+ *.iml
+
+ # Android Studio
+Index: my-application/.idea/scopes/iOS.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/my-application/.idea/scopes/iOS.xml b/my-application/.idea/scopes/iOS.xml
+new file mode 100644
+--- /dev/null	(date 1649362356352)
++++ b/my-application/.idea/scopes/iOS.xml	(date 1649362356352)
+@@ -0,0 +1,3 @@
++<component name="DependencyValidationManager">
++  <scope name="iOS" pattern="file[my-application]:myapp-ios-app/*/||file[my-application.myapp-shared]:src/iosMain/*/||file[my-application.myapp-shared.iosMain]:*/||file[my-application.myapp-shared]:src/iosTest/*/||file[my-application.myapp-shared.iosTest]:*/" />
++</component>
+\ No newline at end of file
+Index: my-application/.idea/scopes/Android.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/my-application/.idea/scopes/Android.xml b/my-application/.idea/scopes/Android.xml
+new file mode 100644
+--- /dev/null	(date 1649362032764)
++++ b/my-application/.idea/scopes/Android.xml	(date 1649362032764)
+@@ -0,0 +1,3 @@
++<component name="DependencyValidationManager">
++  <scope name="Android" pattern="file[my-application.myapp-android-app]:*/||file[my-application.myapp-shared]:src/androidMain/*/||file[my-application.myapp-shared]:src/androidTest/*/" />
++</component>
+\ No newline at end of file
+Index: my-application/.idea/scopes/Shared.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/my-application/.idea/scopes/Shared.xml b/my-application/.idea/scopes/Shared.xml
+new file mode 100644
+--- /dev/null	(date 1649362032740)
++++ b/my-application/.idea/scopes/Shared.xml	(date 1649362032740)
+@@ -0,0 +1,3 @@
++<component name="DependencyValidationManager">
++  <scope name="Shared" pattern="file[my-application.myapp-shared]:*||file[my-application.myapp-shared]:src/commonMain/*/||file[my-application.myapp-shared.commonMain]:*/||file[my-application.myapp-shared]:src/commonTest/*/||file[my-application.myapp-shared.commonTest]:*/" />
++</component>
+\ No newline at end of file
+Index: my-application/.idea/fileColors.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/my-application/.idea/fileColors.xml b/my-application/.idea/fileColors.xml
+new file mode 100644
+--- /dev/null	(date 1649362356349)
++++ b/my-application/.idea/fileColors.xml	(date 1649362356349)
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="SharedFileColors">
++    <fileColor scope="Android" color="Green" />
++    <fileColor scope="iOS" color="Blue" />
++    <fileColor scope="Shared" color="Violet" />
++  </component>
++</project>
+\ No newline at end of file

@@ -53,6 +53,7 @@ generate APP_NAME='The Foo Bar' MODULE_PREFIX='foobar' ORG_NAME='Example, Inc.' 
     # Module Prefix
     sd \
         myapp {{MODULE_PREFIX}} \
+        .idea/scopes/* \
         myapp-ios-app/Podfile \
         myapp-shared/build.gradle.kts \
         myapp-android-app/build.gradle.kts \
@@ -65,6 +66,7 @@ generate APP_NAME='The Foo Bar' MODULE_PREFIX='foobar' ORG_NAME='Example, Inc.' 
     # Root Project
     sd \
         my-application $APP_NAME_KEBABCASED \
+        .idea/scopes/* \
         settings.gradle.kts
     cd ..
     mv my-application $APP_NAME_KEBABCASED

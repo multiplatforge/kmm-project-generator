@@ -58,6 +58,7 @@ generate APP_NAME='The Foo Bar' MODULE_PREFIX='foobar' ORG_NAME='Example, Inc.' 
         MyApplication.xcodeproj/project.pbxproj
 
     mv MyApplication $APP_NAME_PASCALCASED
+    mv {MyApplication,$APP_NAME_PASCALCASED}App.swift
     mv {MyApplication,$APP_NAME_PASCALCASED}.xcodeproj
     cd ..
 

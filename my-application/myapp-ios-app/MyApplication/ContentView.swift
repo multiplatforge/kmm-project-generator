@@ -1,4 +1,4 @@
-import MyApplicationShared
+import MyAppShared
 import SwiftUI
 
 struct ContentView: View {

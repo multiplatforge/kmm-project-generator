@@ -12,14 +12,6 @@ kotlin {
     iosArm64()
     iosSimulatorArm64()
 
-    cocoapods {
-        ios.deploymentTarget = "14.1"
-        podfile = project.file("../myapp-ios-app/Podfile")
-        framework {
-            baseName = "MyAppShared"
-        }
-    }
-
     sourceSets {
         val commonMain by getting
         val commonTest by getting {
@@ -46,6 +38,14 @@ kotlin {
             iosX64Test.dependsOn(this)
             iosArm64Test.dependsOn(this)
             iosSimulatorArm64Test.dependsOn(this)
+        }
+    }
+
+    cocoapods {
+        ios.deploymentTarget = "14.1"
+        podfile = project.file("../myapp-ios-app/Podfile")
+        framework {
+            baseName = "MyAppShared"
         }
     }
 }

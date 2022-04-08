@@ -1,16 +1,17 @@
+import MyApplicationShared
 import SwiftUI
-import MyAppShared
 
 struct ContentView: View {
-	let greet = Greeting().greeting()
+    let greeting: String = Greeting().greeting()
 
-	var body: some View {
-		Text(greet)
-	}
+    var body: some View {
+        Text(greeting)
+            .padding()
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {
-	static var previews: some View {
-		ContentView()
-	}
+    static var previews: some View {
+        ContentView()
+    }
 }

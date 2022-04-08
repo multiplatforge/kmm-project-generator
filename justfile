@@ -11,7 +11,7 @@ patch +PATCHES:
     git apply --ignore-space-change --whitespace=fix ${patch_files[@]}
 
 
-generate APP_NAME='The Foo Bar' MODULE_PREFIX='foobar' ORG_NAME='Example, Inc.' ORG_IDENTIFIER='org.example':
+generate APP_NAME='The Foo Bar' MODULE_PREFIX='foobar' ORG_IDENTIFIER='org.example':
     #!/usr/bin/env sh
     set -euo pipefail
 
@@ -52,9 +52,6 @@ generate APP_NAME='The Foo Bar' MODULE_PREFIX='foobar' ORG_NAME='Example, Inc.' 
         Podfile
     sd \
         orgIdentifier {{ORG_IDENTIFIER}} \
-        MyApplication.xcodeproj/project.pbxproj
-    sd \
-        orgName '"{{ORG_NAME}}"' \
         MyApplication.xcodeproj/project.pbxproj
 
     mv MyApplication $APP_NAME_PASCALCASED

@@ -1,4 +1,13 @@
+@file:Suppress("PropertyName")
+
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
+val ORG_IDENTIFIER: String by rootProject.extra
+val SHARED_MODULE_VERSION: String by rootProject.extra
+val TARGET_ANDROID_SDK_VERSION: Int by rootProject.extra
+val MIN_ANDROID_SDK_VERSION: Int by rootProject.extra
+val TARGET_IOS_VERSION: String by rootProject.extra
+val JVM_BYTECODE_VERSION: JavaVersion by rootProject.extra
 
 plugins {
     kotlin("multiplatform")
@@ -6,7 +15,7 @@ plugins {
     id("com.android.library")
 }
 
-version = "1.0"
+version = SHARED_MODULE_VERSION
 
 kotlin {
     android()
@@ -30,7 +39,7 @@ kotlin {
     cocoapods {
         summary = "Code shared between the My Application Android & iOS apps"
         homepage = "https://my-application-url"
-        ios.deploymentTarget = "14.1"
+        ios.deploymentTarget = TARGET_IOS_VERSION
         podfile = project.file("../myapp-ios-app/Podfile")
         framework {
             baseName = "MyAppShared"
@@ -39,16 +48,16 @@ kotlin {
 }
 
 android {
-    namespace = "orgpackages.myapplication.shared"
-    compileSdk = 32
+    namespace = "$ORG_IDENTIFIER.shared"
+    compileSdk = TARGET_ANDROID_SDK_VERSION
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
 
     defaultConfig {
-        minSdk = 26
-        targetSdk = 32
+        minSdk = MIN_ANDROID_SDK_VERSION
+        targetSdk = TARGET_ANDROID_SDK_VERSION
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JVM_BYTECODE_VERSION
         targetCompatibility = sourceCompatibility
     }
 }
@@ -56,7 +65,7 @@ android {
 tasks {
     withType<KotlinCompile>().configureEach {
         kotlinOptions {
-            jvmTarget = "${JavaVersion.VERSION_11}"
+            jvmTarget = "$JVM_BYTECODE_VERSION"
         }
     }
 }

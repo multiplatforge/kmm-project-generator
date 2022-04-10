@@ -6,6 +6,8 @@ plugins {
     id("com.android.library") apply false
 }
 
+apply("properties.gradle.kts")
+
 tasks {
     wrapper {
         gradleVersion = "7.4.2"

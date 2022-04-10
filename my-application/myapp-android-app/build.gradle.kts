@@ -1,4 +1,13 @@
+@file:Suppress("PropertyName")
+
 import de.fayard.refreshVersions.core.versionFor
+
+val ORG_IDENTIFIER: String by rootProject.extra
+val ANDROID_APP_VERSION: String by rootProject.extra
+val ANDROID_APP_BUILD_NUMBER: Int by rootProject.extra
+val TARGET_ANDROID_SDK_VERSION: Int by rootProject.extra
+val MIN_ANDROID_SDK_VERSION: Int by rootProject.extra
+val JVM_BYTECODE_VERSION: JavaVersion by rootProject.extra
 
 plugins {
     kotlin("android")
@@ -6,15 +15,15 @@ plugins {
 }
 
 android {
-    namespace = "orgpackages.myapplication.android"
-    compileSdk = 32
+    namespace = "$ORG_IDENTIFIER.android"
+    compileSdk = TARGET_ANDROID_SDK_VERSION
 
     defaultConfig {
-        applicationId = "orgpackages.myapplication"
-        minSdk = 26
-        targetSdk = 32
-        versionCode = 1
-        versionName = "1.0"
+        applicationId = ORG_IDENTIFIER
+        minSdk = MIN_ANDROID_SDK_VERSION
+        targetSdk = TARGET_ANDROID_SDK_VERSION
+        versionCode = ANDROID_APP_BUILD_NUMBER
+        versionName = ANDROID_APP_VERSION
     }
     buildTypes {
         release {
@@ -27,7 +36,7 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JVM_BYTECODE_VERSION
         targetCompatibility = sourceCompatibility
     }
     kotlinOptions {

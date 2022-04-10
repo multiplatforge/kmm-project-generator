@@ -10,7 +10,7 @@ android {
     compileSdk = 32
 
     defaultConfig {
-        applicationId = "orgpackages.myapplication.android"
+        applicationId = "orgpackages.myapplication"
         minSdk = 26
         targetSdk = 32
         versionCode = 1

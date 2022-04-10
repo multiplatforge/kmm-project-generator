@@ -1,6 +1,9 @@
 plugins {
+    kotlin("multiplatform") apply false
+    kotlin("native.cocoapods") apply false
     kotlin("android") apply false
     id("com.android.application") apply false
+    id("com.android.library") apply false
 }
 
 tasks {

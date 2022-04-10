@@ -25,6 +25,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "my-application"
 include(
-    ":myapp-android-app",
     ":myapp-shared",
+    ":myapp-android-app",
 )

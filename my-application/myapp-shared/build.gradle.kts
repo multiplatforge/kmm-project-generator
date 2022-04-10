@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     kotlin("multiplatform")
     kotlin("native.cocoapods")
@@ -40,5 +42,17 @@ android {
     defaultConfig {
         minSdk = 26
         targetSdk = 32
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = sourceCompatibility
+    }
+}
+
+tasks {
+    withType<KotlinCompile>().configureEach {
+        kotlinOptions {
+            jvmTarget = "${JavaVersion.VERSION_11}"
+        }
     }
 }

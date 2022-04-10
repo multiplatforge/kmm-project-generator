@@ -19,8 +19,10 @@ kotlin {
                 implementation(kotlin("test"))
             }
         }
+
         val androidMain by getting
         val androidTest by getting
+
         val iosMain by getting
         val iosTest by getting
     }
@@ -40,6 +42,7 @@ android {
     namespace = "orgpackages.myapplication.shared"
     compileSdk = 32
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
+
     defaultConfig {
         minSdk = 26
         targetSdk = 32

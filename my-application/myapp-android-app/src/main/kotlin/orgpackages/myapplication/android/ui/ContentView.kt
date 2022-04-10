@@ -7,11 +7,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import orgpackages.myapplication.shared.Greeting
+import orgpackages.myapplication.shared.Meta
 
 @Composable
 fun ContentView() {
-    val greeting: String = Greeting().greeting()
+    val greeting = "Hello, ${Meta.platform}!"
 
     Box(
         Modifier.fillMaxSize(),

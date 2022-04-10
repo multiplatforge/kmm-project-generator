@@ -1,5 +1,5 @@
 package orgpackages.myapplication.shared
 
-expect class Platform() {
+expect object Meta {
     val platform: String
 }

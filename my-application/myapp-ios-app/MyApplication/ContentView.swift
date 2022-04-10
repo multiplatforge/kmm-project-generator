@@ -2,7 +2,7 @@ import MyAppShared
 import SwiftUI
 
 struct ContentView: View {
-    let greeting: String = Greeting().greeting()
+    let greeting = "Hello, \(Meta.shared.platform)!"
 
     var body: some View {
         Text(greeting)

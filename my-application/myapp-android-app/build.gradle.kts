@@ -6,6 +6,7 @@ plugins {
 }
 
 android {
+    namespace = "orgpackages.myapplication.android"
     compileSdk = 32
 
     defaultConfig {

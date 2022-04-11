@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FAD319B028006F970096EA95 /* MyApplicationApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD319AF28006F970096EA95 /* MyApplicationApp.swift */; };
+		FAD319B028006F970096EA95 /* MyAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD319AF28006F970096EA95 /* MyAppApp.swift */; };
 		FAD319B228006F970096EA95 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD319B128006F970096EA95 /* ContentView.swift */; };
 		FAD319B428006F9A0096EA95 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAD319B328006F9A0096EA95 /* Assets.xcassets */; };
 		FAD319B728006F9A0096EA95 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAD319B628006F9A0096EA95 /* Preview Assets.xcassets */; };
@@ -15,7 +15,7 @@
 
 /* Begin PBXFileReference section */
 		FAD319AC28006F970096EA95 /* MyApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		FAD319AF28006F970096EA95 /* MyApplicationApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyApplicationApp.swift; sourceTree = "<group>"; };
+		FAD319AF28006F970096EA95 /* MyAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAppApp.swift; sourceTree = "<group>"; };
 		FAD319B128006F970096EA95 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		FAD319B328006F9A0096EA95 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FAD319B628006F9A0096EA95 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -51,7 +51,7 @@
 		FAD319AE28006F970096EA95 /* MyApplication */ = {
 			isa = PBXGroup;
 			children = (
-				FAD319AF28006F970096EA95 /* MyApplicationApp.swift */,
+				FAD319AF28006F970096EA95 /* MyAppApp.swift */,
 				FAD319B128006F970096EA95 /* ContentView.swift */,
 				FAD319B328006F9A0096EA95 /* Assets.xcassets */,
 				FAD319B528006F9A0096EA95 /* Preview Content */,
@@ -138,7 +138,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAD319B228006F970096EA95 /* ContentView.swift in Sources */,
-				FAD319B028006F970096EA95 /* MyApplicationApp.swift in Sources */,
+				FAD319B028006F970096EA95 /* MyAppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

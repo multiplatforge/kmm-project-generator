@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="iOS" pattern="file[my-application]:myapp-ios-app/*/||file[my-application.myapp-shared]:src/iosMain/*/||file[my-application.myapp-shared.iosMain]:*/||file[my-application.myapp-shared]:src/iosTest/*/||file[my-application.myapp-shared.iosTest]:*/" />
+</component>

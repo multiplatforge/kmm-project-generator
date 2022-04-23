@@ -2,17 +2,17 @@
 
 import de.fayard.refreshVersions.core.versionFor
 
+plugins {
+    kotlin("android")
+    id("com.android.application")
+}
+
 val ORG_IDENTIFIER: String by rootProject.extra
 val ANDROID_APP_VERSION: String by rootProject.extra
 val ANDROID_APP_BUILD_NUMBER: Int by rootProject.extra
 val TARGET_ANDROID_SDK_VERSION: Int by rootProject.extra
 val MIN_ANDROID_SDK_VERSION: Int by rootProject.extra
 val JVM_BYTECODE_VERSION: JavaVersion by rootProject.extra
-
-plugins {
-    kotlin("android")
-    id("com.android.application")
-}
 
 android {
     namespace = "$ORG_IDENTIFIER.android"

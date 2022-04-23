@@ -2,18 +2,18 @@
 
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+plugins {
+    kotlin("multiplatform")
+    kotlin("native.cocoapods")
+    id("com.android.library")
+}
+
 val ORG_IDENTIFIER: String by rootProject.extra
 val SHARED_MODULE_VERSION: String by rootProject.extra
 val TARGET_ANDROID_SDK_VERSION: Int by rootProject.extra
 val MIN_ANDROID_SDK_VERSION: Int by rootProject.extra
 val TARGET_IOS_VERSION: String by rootProject.extra
 val JVM_BYTECODE_VERSION: JavaVersion by rootProject.extra
-
-plugins {
-    kotlin("multiplatform")
-    kotlin("native.cocoapods")
-    id("com.android.library")
-}
 
 version = SHARED_MODULE_VERSION
 

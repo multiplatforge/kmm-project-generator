@@ -1,4 +1,4 @@
-package orgpackages.myapplication.shared
+package orgpackages.myapp.shared
 
 import android.os.Build
 

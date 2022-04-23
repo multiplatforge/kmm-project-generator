@@ -1,4 +1,4 @@
-package orgpackages.myapplication.android.ui.theme
+package orgpackages.myapp.android.ui.theme
 
 import androidx.compose.material.Shapes
 

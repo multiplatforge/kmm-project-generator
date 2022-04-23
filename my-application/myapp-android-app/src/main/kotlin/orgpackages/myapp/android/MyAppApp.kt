@@ -1,4 +1,4 @@
-package orgpackages.myapplication.android
+package orgpackages.myapp.android
 
 import android.app.Application
 

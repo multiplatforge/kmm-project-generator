@@ -1,5 +1,5 @@
 // Applications
-val ORG_IDENTIFIER by extra("orgpackages.myapplication")
+val ORG_IDENTIFIER by extra("orgpackages.myapp")
 
 // Project Versions
 val SHARED_MODULE_VERSION by extra("0.1.0")

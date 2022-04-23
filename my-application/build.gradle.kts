@@ -1,5 +1,7 @@
 @file:Suppress("PropertyName")
 
+import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+
 plugins {
     kotlin("multiplatform") apply false
     kotlin("native.cocoapods") apply false
@@ -10,6 +12,21 @@ plugins {
 
 apply("properties.gradle.kts")
 val GRADLE_VERSION: String by extra
+
+subprojects {
+    afterEvaluate {
+        project.extensions.findByType<KotlinMultiplatformExtension>()?.apply {
+            sourceSets.removeAll { sourceSet ->
+                setOf(
+                    "androidAndroidTestRelease",
+                    "androidTestFixtures",
+                    "androidTestFixturesDebug",
+                    "androidTestFixturesRelease",
+                ).contains(sourceSet.name)
+            }
+        }
+    }
+}
 
 tasks {
     wrapper {

@@ -3,6 +3,7 @@
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
 plugins {
+    id("com.osacky.doctor")
     kotlin("multiplatform") apply false
     kotlin("native.cocoapods") apply false
     kotlin("android") apply false
@@ -12,6 +13,10 @@ plugins {
 
 apply("properties.gradle.kts")
 val GRADLE_VERSION: String by extra
+
+doctor {
+    disallowCleanTaskDependencies.set(false)
+}
 
 subprojects {
     afterEvaluate {

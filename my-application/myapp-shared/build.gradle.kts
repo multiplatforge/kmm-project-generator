@@ -38,7 +38,7 @@ kotlin {
 
     cocoapods {
         summary = "Code shared between the My Application Android & iOS apps"
-        homepage = "https://my-application-url"
+        homepage = "https://example.com"
         ios.deploymentTarget = TARGET_IOS_VERSION
         podfile = project.file("../myapp-ios-app/Podfile")
         framework {

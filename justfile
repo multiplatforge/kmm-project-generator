@@ -2,7 +2,7 @@
 
 patch +PATCHES:
     #!/usr/bin/env sh
-    set -euo pipefail
+    set -euxo pipefail
 
     patch_files=()
     for patch in {{PATCHES}}; do
@@ -11,29 +11,78 @@ patch +PATCHES:
     git apply --ignore-space-change --whitespace=fix ${patch_files[@]}
 
 
-generate APP_NAME='The Foo Bar' MODULE_PREFIX='foobar' ORG_IDENTIFIER='org.example':
+generate APP_NAME='The Foo Bar' SHORT_NAME='Foo Bar' MODULE_PREFIX='foobar' ORG_IDENTIFIER='app.foobar' APP_WEBSITE='https://foobar.app':
     #!/usr/bin/env sh
-    set -euo pipefail
+    set -euxo pipefail
 
     readonly APP_NAME_PASCALCASED={{replace(APP_NAME, ' ', '')}}
-    readonly APP_NAME_PACKAGECASED={{replace(lowercase(APP_NAME), ' ', '')}}
     readonly APP_NAME_KEBABCASED={{replace(lowercase(APP_NAME), ' ', '-')}}
+    readonly SHORT_NAME_PASCALCASED={{replace(SHORT_NAME, ' ', '')}}
+    readonly SHORT_NAME_PACKAGECASED={{replace(lowercase(SHORT_NAME), ' ', '')}}
     readonly ORG_IDENTIFIER_PATH={{replace(ORG_IDENTIFIER, '.', '/')}}
 
-    # Packages
     cd my-application/
+
+    # Shared Module
+    cd myapp-shared/
+    sd \
+        'My Application' '{{APP_NAME}}' \
+        build.gradle.kts
+    sd \
+        MyApp $SHORT_NAME_PASCALCASED \
+        build.gradle.kts
+    sd \
+        'https://example.com' '{{APP_WEBSITE}}' \
+        build.gradle.kts
+    cd ..
+
+    # Android App
+    cd myapp-android-app/
+    sd \
+        'My Application' '{{APP_NAME}}' \
+        src/main/res/values/strings.xml
+    sd \
+        MyApp $SHORT_NAME_PASCALCASED \
+        src/main/AndroidManifest.xml \
+        src/main/kotlin/orgpackages/myapp/android/MyAppApp.kt \
+        src/main/kotlin/orgpackages/myapp/android/MainActivity.kt \
+        src/main/kotlin/orgpackages/myapp/android/ui/theme/Theme.kt \
+        src/main/res/values/themes.xml
+
+    mv src/main/kotlin/orgpackages/myapp/android/{MyApp,"$SHORT_NAME_PASCALCASED"}App.kt
+    cd ..
+
+    # iOS App
+    cd myapp-ios-app/
+    sd \
+        MyApplication $APP_NAME_PASCALCASED \
+        MyApplication.xcodeproj/project.pbxproj \
+        Podfile
+    sd \
+        MyApp $SHORT_NAME_PASCALCASED \
+        MyApplication.xcodeproj/project.pbxproj \
+        MyApplication/MyAppApp.swift \
+        MyApplication/ContentView.swift
+    sd \
+        orgIdentifier {{ORG_IDENTIFIER}} \
+        MyApplication.xcodeproj/project.pbxproj
+
+    mv MyApplication/{MyApp,"$SHORT_NAME_PASCALCASED"}App.swift
+    mv {MyApplication,$APP_NAME_PASCALCASED}.xcodeproj
+    mv MyApplication $APP_NAME_PASCALCASED
+    cd ..
+
+    # Packages
+    sd orgpackages.myapp {{ORG_IDENTIFIER}}.$SHORT_NAME_PACKAGECASED properties.gradle.kts
     fd \
         --type file \
-        --extension kt --extension kts --extension xml \
-        --exec sh -c "
-            sd myapplication $APP_NAME_PACKAGECASED '{}' \
-            && sd orgpackages {{ORG_IDENTIFIER}} '{}' \
-        "
+        --extension kt \
+        --exec sd orgpackages.myapp {{ORG_IDENTIFIER}}.$SHORT_NAME_PACKAGECASED {}
     fd \
         --type directory \
         --case-sensitive \
-        --glob myapplication \
-        --exec mv {} {//}/$APP_NAME_PACKAGECASED
+        --glob myapp \
+        --exec mv {} {//}/$SHORT_NAME_PACKAGECASED
     fd \
         --type directory \
         --case-sensitive \
@@ -44,29 +93,15 @@ generate APP_NAME='The Foo Bar' MODULE_PREFIX='foobar' ORG_IDENTIFIER='org.examp
             && rmdir {} \
         "
 
-    # iOS Project
-    cd myapp-ios-app/
-    sd \
-        MyApplication $APP_NAME_PASCALCASED \
-        MyApplication.xcodeproj/project.pbxproj \
-        Podfile
-    sd \
-        orgIdentifier {{ORG_IDENTIFIER}} \
-        MyApplication.xcodeproj/project.pbxproj
-
-    mv MyApplication $APP_NAME_PASCALCASED
-    mv {MyApplication,$APP_NAME_PASCALCASED}App.swift
-    mv {MyApplication,$APP_NAME_PASCALCASED}.xcodeproj
-    cd ..
-
-    # Module Prefix
+    # Module Prefixes
     sd \
         myapp {{MODULE_PREFIX}} \
-        .idea/scopes/* \
-        myapp-ios-app/Podfile \
+        settings.gradle.kts \
+        properties.gradle.kts \
         myapp-shared/build.gradle.kts \
         myapp-android-app/build.gradle.kts \
-        settings.gradle.kts
+        myapp-ios-app/Podfile \
+        .idea/scopes/*
 
     mv {myapp,{{MODULE_PREFIX}}}-shared/
     mv {myapp,{{MODULE_PREFIX}}}-android-app/
@@ -75,7 +110,7 @@ generate APP_NAME='The Foo Bar' MODULE_PREFIX='foobar' ORG_IDENTIFIER='org.examp
     # Root Project
     sd \
         my-application $APP_NAME_KEBABCASED \
-        .idea/scopes/* \
-        settings.gradle.kts
+        settings.gradle.kts \
+        .idea/scopes/*
     cd ..
     mv my-application $APP_NAME_KEBABCASED

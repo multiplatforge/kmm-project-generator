@@ -1,3 +1,5 @@
+@file:Suppress("PropertyName")
+
 plugins {
     kotlin("multiplatform") apply false
     kotlin("native.cocoapods") apply false
@@ -7,10 +9,11 @@ plugins {
 }
 
 apply("properties.gradle.kts")
+val GRADLE_VERSION: String by extra
 
 tasks {
     wrapper {
-        gradleVersion = "7.4.2"
+        gradleVersion = GRADLE_VERSION
     }
     register<Delete>("clean") {
         delete(rootProject.buildDir)

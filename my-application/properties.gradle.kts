@@ -16,4 +16,5 @@ val MIN_ANDROID_SDK_VERSION by extra(26)
 val TARGET_IOS_VERSION by extra("14.1")
 
 // Build
+val GRADLE_VERSION by extra("7.4.2")
 val JVM_BYTECODE_VERSION by extra(JavaVersion.VERSION_11)

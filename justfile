@@ -11,12 +11,11 @@ patch +PATCHES:
     git apply --ignore-space-change --whitespace=fix ${patch_files[@]}
 
 
-generate APP_NAME='The Foo Bar' SHORT_NAME='Foo Bar' MODULE_PREFIX='foobar' ORG_IDENTIFIER='app.foobar' APP_WEBSITE='https://foobar.app':
+generate APP_NAME='The Foo Bar' SHORT_NAME='Foo Bar' ROOT_PROJECT_NAME='foobar-apps' MODULE_PREFIX='foobar' ORG_IDENTIFIER='app.foobar' APP_WEBSITE='https://foobar.app':
     #!/usr/bin/env sh
     set -euxo pipefail
 
     readonly APP_NAME_PASCALCASED={{replace(APP_NAME, ' ', '')}}
-    readonly APP_NAME_KEBABCASED={{replace(lowercase(APP_NAME), ' ', '-')}}
     readonly SHORT_NAME_PASCALCASED={{replace(SHORT_NAME, ' ', '')}}
     readonly SHORT_NAME_PACKAGECASED={{replace(lowercase(SHORT_NAME), ' ', '')}}
     readonly ORG_IDENTIFIER_MERGED=$( \
@@ -113,8 +112,8 @@ generate APP_NAME='The Foo Bar' SHORT_NAME='Foo Bar' MODULE_PREFIX='foobar' ORG_
 
     # Root Project
     sd \
-        my-application $APP_NAME_KEBABCASED \
+        my-application {{ROOT_PROJECT_NAME}} \
         settings.gradle.kts \
         .idea/scopes/*
     cd ..
-    mv my-application $APP_NAME_KEBABCASED
+    mv my-application {{ROOT_PROJECT_NAME}}

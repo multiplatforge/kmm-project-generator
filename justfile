@@ -19,7 +19,11 @@ generate APP_NAME='The Foo Bar' SHORT_NAME='Foo Bar' MODULE_PREFIX='foobar' ORG_
     readonly APP_NAME_KEBABCASED={{replace(lowercase(APP_NAME), ' ', '-')}}
     readonly SHORT_NAME_PASCALCASED={{replace(SHORT_NAME, ' ', '')}}
     readonly SHORT_NAME_PACKAGECASED={{replace(lowercase(SHORT_NAME), ' ', '')}}
-    readonly ORG_IDENTIFIER_PATH={{replace(ORG_IDENTIFIER, '.', '/')}}
+    readonly ORG_IDENTIFIER_MERGED=$( \
+        echo {{ORG_IDENTIFIER}}.$SHORT_NAME_PACKAGECASED \
+        | sd --string-mode $SHORT_NAME_PACKAGECASED.$SHORT_NAME_PACKAGECASED $SHORT_NAME_PACKAGECASED
+    )
+    readonly ORG_PACKAGES_PATH=$(echo $ORG_IDENTIFIER_MERGED | sd '(.+)\.\w+' '$1' | sd --string-mode '.' '/')
 
     cd my-application/
 
@@ -73,11 +77,11 @@ generate APP_NAME='The Foo Bar' SHORT_NAME='Foo Bar' MODULE_PREFIX='foobar' ORG_
     cd ..
 
     # Packages
-    sd orgpackages.myapp {{ORG_IDENTIFIER}}.$SHORT_NAME_PACKAGECASED properties.gradle.kts
+    sd orgpackages.myapp $ORG_IDENTIFIER_MERGED properties.gradle.kts
     fd \
         --type file \
         --extension kt \
-        --exec sd orgpackages.myapp {{ORG_IDENTIFIER}}.$SHORT_NAME_PACKAGECASED {}
+        --exec sd orgpackages.myapp $ORG_IDENTIFIER_MERGED {}
     fd \
         --type directory \
         --case-sensitive \
@@ -88,8 +92,8 @@ generate APP_NAME='The Foo Bar' SHORT_NAME='Foo Bar' MODULE_PREFIX='foobar' ORG_
         --case-sensitive \
         --glob orgpackages \
         --exec sh -c "
-            mkdir -p {//}/$ORG_IDENTIFIER_PATH \
-            && mv {}/* {//}/$ORG_IDENTIFIER_PATH \
+            mkdir -p {//}/$ORG_PACKAGES_PATH \
+            && mv {}/* {//}/$ORG_PACKAGES_PATH \
             && rmdir {} \
         "
 

@@ -11,7 +11,7 @@ patch +PATCHES:
     git apply --ignore-space-change --whitespace=fix ${patch_files[@]}
 
 
-generate APP_NAME='The Foo Bar' SHORT_NAME='Foo Bar' ROOT_PROJECT_NAME='foobar-apps' MODULE_PREFIX='foobar' ORG_IDENTIFIER='app.foobar' APP_WEBSITE='https://foobar.app':
+generate APP_NAME='The Foo Bar' SHORT_NAME='Foo Bar' ROOT_PROJECT_NAME='foobar-apps' MODULE_PREFIX='foobar' ORG_IDENTIFIER='app.foobar' APP_WEBSITE='https://foobar.app' OWNER_EMAIL='john.doe@foobar.app':
     #!/usr/bin/env sh
     set -euxo pipefail
 
@@ -111,6 +111,9 @@ generate APP_NAME='The Foo Bar' SHORT_NAME='Foo Bar' ROOT_PROJECT_NAME='foobar-a
     mv {myapp,{{MODULE_PREFIX}}}-ios-app/
 
     # Root Project
+    sd \
+        john.doe@foobar.app {{OWNER_EMAIL}} \
+        CODEOWNERS
     sd \
         my-application {{ROOT_PROJECT_NAME}} \
         settings.gradle.kts \

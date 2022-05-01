@@ -112,6 +112,9 @@ generate APP_NAME='The Foo Bar' SHORT_NAME='Foo Bar' ROOT_PROJECT_NAME='foobar-a
 
     # Root Project
     sd \
+        'My Application' '{{APP_NAME}}' \
+        README.md
+    sd \
         john.doe@foobar.app {{OWNER_EMAIL}} \
         CODEOWNERS
     sd \

@@ -2,6 +2,7 @@
 
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
+// Plugins —————————————————————————————————————————————————————————————————————————————————————————
 plugins {
     id("com.osacky.doctor")
     kotlin("multiplatform") apply false
@@ -11,13 +12,16 @@ plugins {
     id("com.android.library") apply false
 }
 
+// Properties ——————————————————————————————————————————————————————————————————————————————————————
 apply("properties.gradle.kts")
 val GRADLE_VERSION: String by extra
 
+// Gradle Doctor ———————————————————————————————————————————————————————————————————————————————————
 doctor {
     disallowCleanTaskDependencies.set(false)
 }
 
+// Projects ————————————————————————————————————————————————————————————————————————————————————————
 subprojects {
     afterEvaluate {
         project.extensions.findByType<KotlinMultiplatformExtension>()?.apply {
@@ -33,6 +37,7 @@ subprojects {
     }
 }
 
+// Tasks ———————————————————————————————————————————————————————————————————————————————————————————
 tasks {
     wrapper {
         gradleVersion = GRADLE_VERSION

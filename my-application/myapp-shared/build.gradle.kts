@@ -2,12 +2,14 @@
 
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+// Plugins —————————————————————————————————————————————————————————————————————————————————————————
 plugins {
     kotlin("multiplatform")
     kotlin("native.cocoapods")
     id("com.android.library")
 }
 
+// Properties ——————————————————————————————————————————————————————————————————————————————————————
 val ORG_IDENTIFIER: String by rootProject.extra
 val SHARED_MODULE_VERSION: String by rootProject.extra
 val TARGET_ANDROID_SDK_VERSION: Int by rootProject.extra
@@ -15,6 +17,7 @@ val MIN_ANDROID_SDK_VERSION: Int by rootProject.extra
 val TARGET_IOS_VERSION: String by rootProject.extra
 val JVM_BYTECODE_VERSION: JavaVersion by rootProject.extra
 
+// Multiplatform ———————————————————————————————————————————————————————————————————————————————————
 version = SHARED_MODULE_VERSION
 
 kotlin {
@@ -23,6 +26,7 @@ kotlin {
     iosSimulatorArm64()
 
     sourceSets {
+        // Common ——————————————————————————————————————————————————————————————————————————————————
         val commonMain by getting
         val commonTest by getting {
             dependencies {
@@ -30,9 +34,11 @@ kotlin {
             }
         }
 
+        // Android —————————————————————————————————————————————————————————————————————————————————
         val androidMain by getting
         val androidTest by getting
 
+        // iOS —————————————————————————————————————————————————————————————————————————————————————
         val iosSimulatorArm64Main by getting
         val iosMain by getting {
             iosSimulatorArm64Main.dependsOn(this)
@@ -43,6 +49,7 @@ kotlin {
         }
     }
 
+    // CocoaPods ———————————————————————————————————————————————————————————————————————————————————
     cocoapods {
         summary = "Code shared between the My Application Android & iOS apps"
         homepage = "https://example.com"
@@ -54,6 +61,7 @@ kotlin {
     }
 }
 
+// Android —————————————————————————————————————————————————————————————————————————————————————————
 android {
     namespace = "$ORG_IDENTIFIER.shared"
     compileSdk = TARGET_ANDROID_SDK_VERSION
@@ -69,6 +77,7 @@ android {
     }
 }
 
+// Tasks ———————————————————————————————————————————————————————————————————————————————————————————
 tasks {
     withType<KotlinCompile>().configureEach {
         kotlinOptions {

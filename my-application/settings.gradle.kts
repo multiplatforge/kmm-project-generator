@@ -1,3 +1,4 @@
+// Plugins —————————————————————————————————————————————————————————————————————————————————————————
 pluginManagement {
     repositories {
         gradlePluginPortal()
@@ -10,12 +11,14 @@ plugins {
     id("de.fayard.refreshVersions") version "0.40.2"
 }
 
+// refreshVersions —————————————————————————————————————————————————————————————————————————————————
 refreshVersions {
     rejectVersionIf {
         candidate.stabilityLevel.isLessStableThan(current.stabilityLevel)
     }
 }
 
+// Dependencies ————————————————————————————————————————————————————————————————————————————————————
 dependencyResolutionManagement {
     repositories {
         google()
@@ -23,6 +26,7 @@ dependencyResolutionManagement {
     }
 }
 
+// Projects ————————————————————————————————————————————————————————————————————————————————————————
 rootProject.name = "my-application"
 include(
     ":myapp-shared",

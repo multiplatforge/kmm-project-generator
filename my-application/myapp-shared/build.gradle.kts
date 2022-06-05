@@ -20,6 +20,7 @@ version = SHARED_MODULE_VERSION
 kotlin {
     android()
     ios()
+    iosSimulatorArm64()
 
     sourceSets {
         val commonMain by getting
@@ -32,8 +33,14 @@ kotlin {
         val androidMain by getting
         val androidTest by getting
 
-        val iosMain by getting
-        val iosTest by getting
+        val iosSimulatorArm64Main by getting
+        val iosMain by getting {
+            iosSimulatorArm64Main.dependsOn(this)
+        }
+        val iosSimulatorArm64Test by getting
+        val iosTest by getting {
+            iosSimulatorArm64Test.dependsOn(this)
+        }
     }
 
     cocoapods {
